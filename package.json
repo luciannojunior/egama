@@ -1,0 +1,20 @@
+{
+  "name": "cgama",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de gerenciamento de turmas para 3 ano medio do Colegio Imaculada Conceicao",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luciano Junior",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "express-validator": "^2.20.2",
+    "jsonwebtoken": "^5.7.0",
+    "mongoose": "^4.4.4"
+  }
+}
