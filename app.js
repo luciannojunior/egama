@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 
 global.secret = 'biazinha';
 
-var authLogin = require('./routes/auth.login');
-var authSignin = require('./routes/auth.signin');
+var authLogin = require('./routes/auth.login.js');
+var authSignin = require('./routes/auth.signin.js');
 
 var studentsRouter = require('./routes/students.js');
 
