@@ -1,21 +1,25 @@
 var Student = require('../models/aluno');
 var express = require('express');
-
+var validator = require('../cgama-validator');
 var router = express.Router();
 
 //Creates a new Student
 router.post('/', function(req, res){
-	var newStudent = new Student({
-		_id: req.body.id,
-		turma: req.body.turma,
+	
+	var dataInput = {
 		nome: req.body.nome,
-		matricula: req.body.matricula
-	});
+		turma: req.body.turma,
+		matricula: 123
+	};
+	
+	var newStudent = validator.student(dataInput);
+	res.json(newStudent);
+	// var newStudent = new Student({);
 
-	newStudent.save(function(err, data){
-		if (err) throw err;
-		res.json(data);
-	})
+	// newStudent.save(function(err, data){
+	// 	if (err) throw err;
+	// 	res.json(data);
+	// })
 });
 
 router.get('/', function(req, res){

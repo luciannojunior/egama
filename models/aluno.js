@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose.connection);
 
 var alunoSchema = new Schema({
-    "_id": Number,
     "turma": String,
 	"nome": String,
 	"matricula": Number,
@@ -46,5 +47,7 @@ var alunoSchema = new Schema({
 
 }
 );
+
+alunoSchema.plugin(autoIncrement.plugin, 'alunos');
 
 module.exports = mongoose.model('alunos', alunoSchema);

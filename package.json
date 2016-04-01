@@ -15,7 +15,9 @@
     "express": "^4.13.4",
     "express-validator": "^2.20.2",
     "jsonwebtoken": "^5.7.0",
+    "lodash": "^4.7.0",
     "mongoose": "^4.4.4",
+    "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^1.9.1"
   }
 }
