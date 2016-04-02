@@ -10,6 +10,7 @@ var alunoSchema = new Schema({
 	"dataDeNascimento": Date,
 	"telefone": [String],
 	"email": String,
+	"avatarUrl": String,
 	"rg": {
 		"numero": Number,
 		"dataDeEmissao": Date,
