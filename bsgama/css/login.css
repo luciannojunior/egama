@@ -25,4 +25,15 @@ body {
 }
 
 
+.cgama-login{
+    margin-top: 250px;
+    background-color: rgba(0,130,206,0.6);
+    padding: 15px;
+    padding-top: 1px;
+    color: white;
+}
 
+h2{
+    
+    font-size: 22px !important;
+}

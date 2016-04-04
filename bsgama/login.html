@@ -23,6 +23,8 @@
     
     <script type="text/javascript" src="js/controllers/RelatoriosController.js"></script>
     
+    <script type="text/javascript" src="js/controllers/LoginController.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
     
     <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
@@ -32,14 +34,11 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet"> 
-
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="css/cgama.css">
     <!-- Custom Fonts -->
+    
+    <!-- Custom CSS -->
+    <link href="css/login.css" rel="stylesheet"> 
 
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -57,14 +56,40 @@
     
 </head>
 
-<body>
+<body ng-controller="LoginController as vm">
 
-    <div class="container-fluid" >
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12"></div>    
-        </div>        
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <form class="cgama-login" ng-submit="vm.login(usuario)">
+                    <h2><em class="fa fa-laptop"></em> Sistema C-GAMA <em ng-show="vm.loading" class="fa fa-spinner fa-spin"></em></h2>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">login</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="login" ng-model="usuario.login">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">senha</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="sua senha" ng-model="usuario.password">
+                    </div>
+                    <button type="submit" ng-disabled="vm.loading" class="btn btn-default pull-right">logar</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2" ng-show="vm.erro">
+                <h4 class="alert alert-danger" role="alert">Seus dados estão incorretos</h4>
+            </div>
+            <div class="col-md-2" ng-show="vm.sucesso">
+                <h4 class="alert alert-success" role="alert">Você está logado!</h4>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
     </div>
-    <!-- /.container-fluid --
+    <!-- /.container-fluid -->
     
 </body>
 
