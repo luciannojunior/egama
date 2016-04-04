@@ -15,7 +15,8 @@ cgama.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('relatorios',{
         url: "/relatorios",
-        templateUrl: "view/relatorios.html"
+        templateUrl: "view/relatorios.html",
+        controller: 'RelatoriosController as reportCtrl'        
     });
     
 });

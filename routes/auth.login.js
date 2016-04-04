@@ -9,7 +9,7 @@ var jwt = require('jsonwebtoken');
 var SECRET = global.secret;
 
 var logInFn = function(req, res){
-
+    console.log(req.body);
 	User.getUserByUsername(req.body.login, function(err, user){
 		if (err){
 			console.log(err);
