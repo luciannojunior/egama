@@ -20,3 +20,9 @@ cgama.config(function($stateProvider, $urlRouterProvider) {
     });
     
 });
+cgama.value('apiRoot', 'http://localhost:3000');
+
+cgama.constant('ENDPOINTS', {
+    "LOGIN": "/access/login",
+    "STUDENT": "/students"
+});

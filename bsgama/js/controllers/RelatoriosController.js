@@ -1,3 +1,7 @@
 cgama.controller('RelatoriosController', ['$stateParams','User', function ($stateParams, User) {
-    console.log(User.isAdmin());
+    if(User.isLoggedIn()){
+        this.titulo = User.getName();
+    }else{
+        this.titulo = "OI";
+    }
 }]);

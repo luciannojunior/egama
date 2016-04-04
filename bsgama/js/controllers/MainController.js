@@ -1,7 +1,12 @@
 cgama.controller('MainController', ['$stateParams','User', function ($stateParams, User) {
     this.titulo = $stateParams.id;
-    var usuario = new User("luciano", "12345");
-    usuario.newLogin().then(function (data) {
-        console.log(data);
+    
+    User.login("luciano", "12345").then(function (data) {
+        console.log("logged");
+    }, function (err) {
+        console.log("erro");
+        console.log(err);
     });
+    
+    
 }]);

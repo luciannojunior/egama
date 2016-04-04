@@ -1,37 +1,60 @@
-cgama.factory('User', ['$http', '$localStorage', function UserFactory($http, $localStorage) {
-    var User = function(login, password){
-        this.login = login;
-        this.password = password;
-        this.admin = false;
-        this.nome = "";
-        this.avatarUrl = "";
+/**
+ * apiRoot = "http://localhost:3000"
+ * ENDPOINTS.LOGIN = "/access/login"
+ * $localStorage = provides access to $window.localStorage
+ */
+cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', 'ENDPOINTS',
+                     function UserService($http, $localStorage, $q, jwtHelper, apiRoot, ENDPOINTS) {
+    var self = this;
+    
+    function getUser() {
+        if (self.isLoggedIn()){
+            return JSON.parse($localStorage.user);
+        }else{
+            return {oi: "oi"};
+        }
     }
     
-    User.prototype.newLogin = function () {
+    this.getName = function () {
+       return (self.isLoggedIn()) ? getUser().name : "";
+    };
+    
+    this.isLoggedIn = function () {
+        return typeof $localStorage.user !== 'undefined';    
+    };
+    
+    this.login = function (login, password) {
         
         var self = this;
         
-        return $http.post('http://localhost:3000/access/login', self)
-        .then(
-            function(response){
-                
-                self = response.data;
-                    
-                $localStorage.token = self.token;
-                
-                return response;
-        }, function (err) {
-            console.log(err);
-            return err;
-        });
+        var deferred = $q.defer();
+    
+        if (this.isLoggedIn()){
+            deferred.reject("User is already logged in");
+            return deferred.promise;
+        }    
         
+        var loginData = {
+            login: login,
+            password: password
+        };
         
+        $http.post(apiRoot+ENDPOINTS.LOGIN, loginData)
+            .then(function (data) {
+                $localStorage.token = data.data.token;
+                $localStorage.user = JSON.stringify(jwtHelper.decodeToken(data.data.token));
+                
+                deferred.resolve(data.data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            
+        return deferred.promise;
     };
     
-    User.prototype.isAdmin = function () {
-        return this.profile.nome;
-    }
-    
-    
-    return User;
+    this.logout = function () {
+        $localStorage.$reset();
+        console.log(self.isLoggedIn());
+    };
+
 }]);
