@@ -1,0 +1,18 @@
+A página login.html não está dentro do ui-router.
+
+Estou fazendo como um redirecionamento usando o $window.location.href
+
+A validação está fraca no cliente.
+
+O servidor está tendo problemas com entradas inválidas, provenientes do Angular.
+
+Novo handler de erro (o outro estava com a ordem errada dos argumentos).
+
+Fazer verificação de o usuário já estar logado
+
+Quando dá errado (400), a promessa conta como acerto, porém ainda não começamos a 
+verificação do esquema err: [true, ...].
+
+Não é preciso reforçar na segurança, mas é um assunto interessante para estudar.
+
+Tentar ver algo de TypeScript ou JavaScript OO para usar nessa funcionalidade, como é menor.
