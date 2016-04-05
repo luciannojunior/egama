@@ -7,11 +7,13 @@ cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', '
                      function UserService($http, $localStorage, $q, jwtHelper, apiRoot, ENDPOINTS) {
     var self = this;
     
+    self.profile = {};
+    
     function getUser() {
         if (self.isLoggedIn()){
             return JSON.parse($localStorage.user);
         }else{
-            return {oi: "oi"};
+            return {};
         }
     }
     
@@ -30,6 +32,7 @@ cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', '
         var deferred = $q.defer();
     
         if (this.isLoggedIn()){
+            
             deferred.reject("User is already logged in");
             return deferred.promise;
         }    
@@ -41,8 +44,10 @@ cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', '
         
         $http.post(apiRoot+ENDPOINTS.LOGIN, loginData)
             .then(function (data) {
+                
                 $localStorage.token = data.data.token;
                 $localStorage.user = JSON.stringify(jwtHelper.decodeToken(data.data.token));
+                
                 
                 deferred.resolve(data.data);
             }, function (err) {

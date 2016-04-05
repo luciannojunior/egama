@@ -1,4 +1,10 @@
-cgama.controller('LoginController', ['User', '$window',  function (User, $window    ) {
+cgama.controller('LoginController', ['User', '$window',  function (User, $window) {
+    
+      (function main() {
+        if (User.isLoggedIn()){
+            $window.location.href =   "index.html";                  
+        }
+      })();
     
       var self = this;
       
@@ -21,7 +27,7 @@ cgama.controller('LoginController', ['User', '$window',  function (User, $window
                   console.log(data);
                   self.loading = false;
                   self.sucesso = true;
-                  $window.location.href = "index.html";
+                //   $window.location.href =   "index.html";
               },
               function (err) {
                   console.log(err);

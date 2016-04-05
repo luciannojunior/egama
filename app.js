@@ -18,8 +18,10 @@ var timetableRouter = require('./routes/timetable.js');*/
 var authMiddle = require('./middleware/authBasic.js');
 
 var app = express();
-app.use(function(req, res, err, next){
-	console.log(req.body);
+app.use(function(err, req, res, next){
+	console.log(err.stack);
+    res.json({err: [true, 'Check console for debugging']});
+    return;
 });
 
 app.use(express.static('bsgama'));
