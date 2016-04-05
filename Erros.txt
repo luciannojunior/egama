@@ -1,0 +1,2 @@
+FRONTEND:
+17 - Internal error => HTTPService - The http request was successful, but the response data was not as hoped. (there was not an err param)

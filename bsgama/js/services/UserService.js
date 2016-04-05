@@ -3,8 +3,8 @@
  * ENDPOINTS.LOGIN = "/access/login"
  * $localStorage = provides access to $window.localStorage
  */
-cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', 'ENDPOINTS', 'lodash',
-                     function UserService($http, $localStorage, $q, jwtHelper, apiRoot, ENDPOINTS, _) {
+cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS', 'lodash', '$q',
+                     function UserService(HttpService, $localStorage, jwtHelper, ENDPOINTS, _, $q) {
     var self = this;
     
     self.profile = {};
@@ -31,30 +31,32 @@ cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', '
         
         var deferred = $q.defer();
     
-        if (this.isLoggedIn()){
+        // if (this.isLoggedIn()){
             
-            deferred.reject("User is already logged in");
-            return deferred.promise;
-        }    
+        //     deferred.reject("User is already logged in");
+        //     return deferred.promise;
+        // }    
         
         var loginData = {
             login: login,
             password: password
         };
         
-        $http.post(apiRoot+ENDPOINTS.LOGIN, loginData)
-            .then(function (data) {
-                
-                console.log("oi");
-                // $localStorage.token = data.data.token;
-                // $localStorage.user = JSON.stringify(jwtHelper.decodeToken(data.data.token));
-                
-                
-                deferred.resolve(data.data);
-            }, function (err) {
-                deferred.reject(err);
-            });
+        HttpService.request({
+            method: 'post',
+            uri: ENDPOINTS.LOGIN,
+            body: loginData
+        }).then(function (token) {
+            //'token' expected to be a token string
+            $localStorage.token = token;
+            var user = JSON.stringify(jwtHelper.decodeToken(token));
+            $localStorage.user = user;
             
+            deferred.resolve(user);
+        }, function (err) {
+            deferred.reject(err); 
+        });
+                   
         return deferred.promise;
     };
     

@@ -1,10 +1,19 @@
-cgama.controller('LoginController', ['User', '$window',  function (User, $window) {
+cgama.controller('LoginController', ['User', '$window','ModalService', function (User, $window, ModalService) {
     
-      (function main() {
-        if (User.isLoggedIn()){
-            $window.location.href =   "index.html";                  
+    //   (function main() {
+    //     if (User.isLoggedIn()){
+    //         $window.location.href =   "index.html";                  
+    //     }
+    //   })();
+    
+    (function main() {
+        ModalService.showModal({
+        template: "<div>Fry lives in {{futurama.city}}</div>",
+        controller: function() {
+            this.city = "New New York";
         }
-      })();
+        });    
+    })();
     
       var self = this;
       
