@@ -3,8 +3,8 @@
  * ENDPOINTS.LOGIN = "/access/login"
  * $localStorage = provides access to $window.localStorage
  */
-cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', 'ENDPOINTS',
-                     function UserService($http, $localStorage, $q, jwtHelper, apiRoot, ENDPOINTS) {
+cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', 'ENDPOINTS', 'lodash',
+                     function UserService($http, $localStorage, $q, jwtHelper, apiRoot, ENDPOINTS, _) {
     var self = this;
     
     self.profile = {};
@@ -22,7 +22,7 @@ cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', '
     };
     
     this.isLoggedIn = function () {
-        return typeof $localStorage.user !== 'undefined';    
+        return !(_.isUndefined($localStorage.user));    
     };
     
     this.login = function (login, password) {
@@ -45,8 +45,9 @@ cgama.service('User', ['$http', '$localStorage', '$q', 'jwtHelper', 'apiRoot', '
         $http.post(apiRoot+ENDPOINTS.LOGIN, loginData)
             .then(function (data) {
                 
-                $localStorage.token = data.data.token;
-                $localStorage.user = JSON.stringify(jwtHelper.decodeToken(data.data.token));
+                console.log("oi");
+                // $localStorage.token = data.data.token;
+                // $localStorage.user = JSON.stringify(jwtHelper.decodeToken(data.data.token));
                 
                 
                 deferred.resolve(data.data);
