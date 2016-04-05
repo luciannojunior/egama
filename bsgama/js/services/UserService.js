@@ -16,7 +16,13 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
             return {};
         }
     }
-    
+    this.getToken = function (){
+        if (self.isLoggedIn()){
+            return $localStorage.token;
+        }else{
+            return "";
+        }
+    };
     this.getName = function () {
        return (self.isLoggedIn()) ? getUser().name : "";
     };
@@ -52,11 +58,11 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
             var user = JSON.stringify(jwtHelper.decodeToken(token));
             $localStorage.user = user;
             
-            deferred.resolve(user);
+            deferred.resolve(JSON.parse(user));
         }, function (err) {
             deferred.reject(err); 
         });
-                   
+                //    deferred.resolve("oi");
         return deferred.promise;
     };
     

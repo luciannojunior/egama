@@ -1,4 +1,4 @@
-cgama.controller('LoginController', ['User', '$window','ModalService', function (User, $window, ModalService) {
+cgama.controller('LoginController', ['User', '$window', 'ngDialog', 'ERRORS', function (User, $window, ngDialog, ERRORS) {
     
     //   (function main() {
     //     if (User.isLoggedIn()){
@@ -7,12 +7,8 @@ cgama.controller('LoginController', ['User', '$window','ModalService', function 
     //   })();
     
     (function main() {
-        ModalService.showModal({
-        template: "<div>Fry lives in {{futurama.city}}</div>",
-        controller: function() {
-            this.city = "New New York";
-        }
-        });    
+        
+        
     })();
     
       var self = this;
@@ -34,15 +30,25 @@ cgama.controller('LoginController', ['User', '$window','ModalService', function 
           User.login(usuario.login, usuario.password).then(
               function (data) {
                   console.log(data);
-                  self.loading = false;
-                  self.sucesso = true;
+                  ngDialog.open({
+                        template: "<h1>Sucesso ao logar</h1><p>Bem-vindo(a) <b>"+data.name+"</b>, você será redirecionado!</p>",
+                        plain: true,
+                        className: 'ngdialog-theme-default'
+                    }).closePromise.then(function () {
+                        self.loading = false;
+                    });
                 //   $window.location.href =   "index.html";
               },
               function (err) {
-                  console.log(err);
-                  self.erro = true;
-                  usuario = {};
-                  self.loading = false;
+                  ngDialog.open({
+                        template: "<h1>"+ERRORS.LOGIN+"</h1><p>"+err+"</p>",
+                        plain: true,
+                        className: 'ngdialog-theme-erro'
+                    }).closePromise.then(function () {
+                        
+                        self.loading = false;
+                    });
+                  
               }
           );
       };

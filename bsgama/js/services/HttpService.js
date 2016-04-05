@@ -1,4 +1,4 @@
-cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function ErrorService($http, $q, root, _) {
+cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function HttpService($http, $q, root, _) {
     var METHODS_ALLOWED = ['post', 'get', 'put', 'patch', 'delete'];
     
     // var config = {
@@ -38,6 +38,9 @@ cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function Error
                 }else{
                     deferred.resolve(data.output);
                 }
+            },
+            function (err) {
+                deferred.reject(err);
             }
         );
         

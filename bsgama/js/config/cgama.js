@@ -1,4 +1,4 @@
-cgama.config(function($stateProvider, $urlRouterProvider) {
+cgama.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   
   $urlRouterProvider.otherwise("/");
   //
@@ -19,10 +19,18 @@ cgama.config(function($stateProvider, $urlRouterProvider) {
         controller: 'RelatoriosController as reportCtrl'        
     });
     
+    
 });
+
+
 cgama.value('apiRoot', 'http://localhost:3000');
 
 cgama.constant('ENDPOINTS', {
     "LOGIN": "/access/login",
+    "STUDENT": "/students"
+});
+
+cgama.constant('ERRORS', {
+    "LOGIN": "Erro ao logar",
     "STUDENT": "/students"
 });
