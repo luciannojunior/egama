@@ -31,6 +31,11 @@ cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function HttpS
                                 
                 var data = output.data;
                 
+                //TODO: Usar essa verificação para passar um evento ao $rootScope
+                //      e redirecionar em outro local
+                if (output.status == 403){
+                    $window.location.href =   "login.html";
+                }
                 if (_.isUndefined(data.err)){
                     deferred.reject("Internal error 17");
                 }else if (data.err[0]){
