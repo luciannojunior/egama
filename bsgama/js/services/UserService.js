@@ -17,14 +17,6 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
         }
     }
     
-    this.getToken = function (){
-        if (self.isLoggedIn()){
-            return $localStorage.token;
-        }else{
-            return "";
-        }
-    };
-    
     this.getName = function () {
        return (self.isLoggedIn()) ? getUser().name : "";
     };

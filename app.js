@@ -8,7 +8,7 @@ var authLogin = require('./routes/auth.login.js');
 var authSignin = require('./routes/auth.signin.js');
 
 var studentsRouter = require('./routes/students.js');
-
+var infoRouter = require('./routes/info.js');
 /*
 var groupsRouter = require('./routes/groups.js');
 var parentsRouter = require('./routes/parents.js');
@@ -44,6 +44,8 @@ app.use('/api/signin', authSignin);
 
 // Private route to students
 app.use('/api/students', studentsRouter);
+
+app.use('/api/info', infoRouter);
 /*
 app.use('/api/groups', groupsRouter);
 
@@ -58,6 +60,10 @@ app.use('/api/snapshot', snapshotRouter);*/
 //Teste de criação de usuário
 app.put('/put', function(req, res){
 	res.json(req.headers);
+});
+
+app.get('/curl', function(req, res){
+	res.json({deu: "certo"});
 });
 
 app.listen(3000, function(){console.log('Listening')});

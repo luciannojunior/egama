@@ -35,7 +35,7 @@
                                         <i class="fa fa-users fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge timer" data-from="0" data-to="121" data-speed="1500"></div>
+                                        <div class="huge timer" data-from="0" data-to="{{ mainCtrl.info.fimAula }}" data-speed="1500">{{ mainCtrl.info.alunos}}</div>
                                         <div>Alunos</div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                         <i class="fa fa-user fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge timer" data-from="0" data-to="16" data-speed="1500"></div>
+                                        <div class="huge timer" data-from="0" data-to="{{ mainCtrl.info.fimAula }}" data-speed="1500">{{ mainCtrl.info.professores }}</div>
                                         <div>Professores</div>
                                     </div>
                                 </div>
@@ -80,8 +80,8 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">
-                                            <span class="timer" data-from="24" data-to="19" data-speed="200">
-                                            </span>:<span class="timer" data-from="60" data-to="10" data-speed="1500">
+                                            <span class="timer" data-from="24" data-to="{{ mainCtrl.info.fimAula }}" data-speed="200">
+                                            {{ mainCtrl.info.fimAula }}
                                             </span>
                                         </div>
                                         
@@ -106,7 +106,7 @@
                                         <i class="fa fa-calendar fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge timer" data-from="0" data-to="110" data-speed="1500"></div>
+                                        <div class="huge timer" data-from="0" data-to="{{ mainCtrl.info.enem}}" data-speed="1500">{{ mainCtrl.info.enem}}</div>
                                         <div>dias para o ENEM!</div>
                                     </div>
                                 </div>
