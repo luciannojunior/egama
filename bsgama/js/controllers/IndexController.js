@@ -12,6 +12,7 @@ cgama.controller('IndexController', ['User', '$window', function (User, $window)
     this.usuario = usuario;
     
     this.logout = function () {
+        
         User.logout();
         $window.location.href = "login.html";
     };
