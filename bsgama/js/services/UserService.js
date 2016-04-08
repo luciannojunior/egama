@@ -16,6 +16,7 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
             return {};
         }
     }
+    
     this.getToken = function (){
         if (self.isLoggedIn()){
             return $localStorage.token;
@@ -23,6 +24,7 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
             return "";
         }
     };
+    
     this.getName = function () {
        return (self.isLoggedIn()) ? getUser().name : "";
     };
@@ -37,11 +39,11 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
         
         var deferred = $q.defer();
     
-        // if (this.isLoggedIn()){
+        if (this.isLoggedIn()){
             
-        //     deferred.reject("User is already logged in");
-        //     return deferred.promise;
-        // }    
+            deferred.reject("User is already logged in");
+            return deferred.promise;
+        }    
         
         var loginData = {
             login: login,
@@ -62,13 +64,11 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
         }, function (err) {
             deferred.reject(err); 
         });
-                //    deferred.resolve("oi");
         return deferred.promise;
     };
     
     this.logout = function () {
         $localStorage.$reset();
-        console.log(self.isLoggedIn());
     };
 
 }]);
