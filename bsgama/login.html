@@ -35,6 +35,8 @@
     
     <script src="js/services/UserService.js" type="text/javascript"></script>
     
+    <script src="js/services/ModalService.js" type="text/javascript"></script>
+    
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -71,32 +73,23 @@
         <div class="row">
             <div class="col-md-5"></div>
             <div class="col-md-2">
-                <form class="cgama-login" ng-submit="vm.login(usuario)">
+                <form class="cgama-login" ng-submit="vm.login(usuario)" name="cgama.login">
                     <h2><em class="fa fa-laptop"></em> Sistema C-GAMA <em ng-show="vm.loading" class="fa fa-spinner fa-spin"></em></h2>
                     <div class="form-group">
                         <label for="exampleInputEmail1">login</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="login" ng-model="usuario.login">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="login" ng-model="usuario.login" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">senha</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="sua senha" ng-model="usuario.password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="sua senha" ng-model="usuario.password" required>
                     </div>
-                    <button type="submit" ng-disabled="vm.loading" class="btn btn-default pull-right">logar</button>
+                    <button type="submit" ng-disabled="vm.loading || cgama.login.$invalid" class="btn btn-default pull-right">logar</button>
                     <div class="clearfix"></div>
                 </form>
             </div>
             <div class="col-md-5"></div>
         </div>
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-2" ng-show="vm.erro">
-                <h4 class="alert alert-danger" role="alert">Seus dados estão incorretos</h4>
-            </div>
-            <div class="col-md-2" ng-show="vm.sucesso">
-                <h4 class="alert alert-success" role="alert">Você está logado!</h4>
-            </div>
-            <div class="col-md-5"></div>
-        </div>
+        
     </div>
     <!-- /.container-fluid -->
     

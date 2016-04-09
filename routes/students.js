@@ -35,7 +35,7 @@ router.post('/', function(req, res){
 				console.log(err);
 				res.json({err: [true, "Check console for debugging"]});
 			}else{
-		 		res.json({err: [false], msg: data._id});
+		 		res.json({err: [false], output: data._id});
 		 	}
 		});
 

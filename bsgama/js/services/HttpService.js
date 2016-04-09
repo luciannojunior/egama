@@ -1,4 +1,4 @@
-cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function HttpService($http, $q, root, _) {
+cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', '$localStorage',function HttpService($http, $q, root, _, $localStorage) {
     var METHODS_ALLOWED = ['post', 'get', 'put', 'patch', 'delete'];
     
     // var config = {
@@ -6,6 +6,9 @@ cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function HttpS
     //     uri: "/access/login",
     //     body: {login: "luciano", password: "12345"}
     // };
+    function getToken(){
+        return ($localStorage.token) ? $localStorage.token : "";
+    }
     
     this.request = function (config) {
         var deferred = $q.defer();
@@ -22,15 +25,19 @@ cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function HttpS
             return deferred.promise;
         }
         
+        var accessToken = getToken();
+        
         $http({
             method: config.method,
             url: (root+config.uri),
-            data: config.body || {}
+            data: config.body || {},
+            headers: {
+                'Authorization': 'JWT '+accessToken
+            }
         }).then(
             function (output) {
                                 
                 var data = output.data;
-                
                 //TODO: Usar essa verificação para passar um evento ao $rootScope
                 //      e redirecionar em outro local
                 if (output.status == 403){
