@@ -35,8 +35,8 @@ cgama.service('HttpService', ['$http', '$q', 'apiRoot', 'lodash', function HttpS
                 //      e redirecionar em outro local
                 if (output.status == 403){
                     $window.location.href =   "login.html";
-                }
-                if (_.isUndefined(data.err)){
+                    deferred.reject("Unauthorized");
+                }else if (_.isUndefined(data.err)){
                     deferred.reject("Internal error 17");
                 }else if (data.err[0]){
                     deferred.reject(data.err[1]);

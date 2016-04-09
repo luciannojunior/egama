@@ -62,7 +62,7 @@ cgama.service('User', ['HttpService', '$localStorage', 'jwtHelper', 'ENDPOINTS',
         }, function (err) {
             deferred.reject(err); 
         });
-                //    deferred.resolve("oi");
+                
         return deferred.promise;
     };
     
