@@ -18,6 +18,7 @@ var timetableRouter = require('./routes/timetable.js');*/
 var authMiddle = require('./middleware/authBasic.js');
 
 var app = express();
+
 app.use(function(err, req, res, next){
 	console.log(err.stack);
     res.json({err: [true, 'Check console for debugging']});
@@ -53,17 +54,6 @@ app.use('/api/parents', parentsRouter);
 
 app.use('/api/timetable', timetableRouter);
 
-
-
 app.use('/api/snapshot', snapshotRouter);*/
-
-//Teste de criação de usuário
-app.put('/put', function(req, res){
-	res.json(req.headers);
-});
-
-app.get('/curl', function(req, res){
-	res.json({deu: "certo"});
-});
 
 app.listen(3000, function(){console.log('Listening')});

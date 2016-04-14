@@ -2,14 +2,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Forms
+                            Cadastro de alunos
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Página Inicial</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Forms
+                                <i class="fa fa-edit"></i> Cadastro de alunos
                             </li>
                         </ol>
                     </div>
@@ -17,19 +17,46 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-md-12">
 
                         <form role="form">
 
                             <div class="form-group">
-                                <label>Text Input</label>
-                                <input class="form-control">
-                                <p class="help-block">Example block-level help text here.</p>
+                                <div class="col-md-6 col-xs-12">
+                                    <label for="aluno">Nome do aluno</label>
+                                    <input type="text" class="form-control" placeholder="Escreve o nome completo do aluno">
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <label>Mátricula</label>
+                                    <input type="text" class="form-control" placeholder="Digite o número da matrícula">
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <label>Data de Nascimento</label>
+                                    <input type="text" class="form-control" placeholder="ex: 20/05/1998">
+                                </div>
                             </div>
-
                             <div class="form-group">
-                                <label>Text Input with Placeholder</label>
-                                <input class="form-control" placeholder="Enter text">
+                                <div class="col-md-3">
+                                    <label for="aluno">Turma</label>
+                                    <select class="form-control">
+                                        <option value="1">3º série A</option>
+                                        <option value="2">3º série B</option>
+                                        <option value="3">3º série C</option>
+                                        <option value="4">3º série D</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Telefone fixo</label>
+                                    <input type="text" class="form-control" placeholder="Telefone residencial">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Celular</label>
+                                    <input type="text" class="form-control" placeholder="Digite o celular do aluno">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Celular (2)</label>
+                                    <input type="text" class="form-control" placeholder="Caso haja mais de um celular ;)">
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -139,6 +166,8 @@
                         </form>
 
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-6">
                         <h1>Disabled Form States</h1>
 

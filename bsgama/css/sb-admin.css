@@ -110,7 +110,9 @@ li.message-footer {
 ul.alert-dropdown {
     width: 200px;
 }
-
+input[type="text"]{
+    margin-bottom: 5px;
+}
 /* Side Navigation */
 
 @media(min-width:768px) {
