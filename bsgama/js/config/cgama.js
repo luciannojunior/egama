@@ -1,4 +1,4 @@
-cgama.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+cgama.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
   
   $urlRouterProvider.otherwise("/");
   //
@@ -20,7 +20,7 @@ cgama.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     });
     
     
-});
+}]);
 
 
 cgama.value('apiRoot', 'http://localhost:3000');
